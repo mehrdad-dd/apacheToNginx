@@ -2,7 +2,6 @@
 
 This bash script automates the conversion of Apache configuration files to Nginx configuration files. It supports additional features like rate limiting, untrusted content handling, and directory traversal protection.
 
-
 ##### I developed this script to streamline the conversion of over 200+ virtual hosts from Apache to Nginx, tailored precisely to meet our infrastructure's requirements. Sensitive data and configurations have been sanitized for this public release. The script significantly reduced the time and effort required for our migration, enabling us to transition numerous vHosts efficiently.
 
 This tool served as an invaluable resource during our migration process, but please note that it was designed with specific use cases in mind. As such, while it has proven reliable in our environment, I strongly recommend that you thoroughly review and test it within your own setup before deploying it to production.
