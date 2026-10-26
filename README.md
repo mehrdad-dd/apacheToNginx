@@ -19,7 +19,7 @@ A Bash script originally written to assist with converting Apache virtual-host c
 | Current repository maintainer | `@mehrdad-dd` |
 | Code provenance | `converter.sh` matched the upstream file at the recorded October 2026 review |
 | Changes in this repository | The October 14, 2026 commit edited README whitespace only; later documentation changes are tracked in Git |
-| License | The included [LICENSE](LICENSE) contains **GNU GPL version 3**; the old README (including upstream) incorrectly said MIT. See below. |
+| License | The included [LICENSE](LICENSE) contains **GNU GPL version 3**; the historical README (including upstream) said MIT, creating a licensing discrepancy. See below. |
 
 ## Safety and current limitations
 
