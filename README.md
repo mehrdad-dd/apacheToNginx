@@ -1,77 +1,53 @@
-# Apache to Nginx Configuration Conversion Script
+# Apache → Nginx Configuration Converter
 
-This bash script automates the conversion of Apache configuration files to Nginx configuration files. It supports additional features like rate limiting, untrusted content handling, and directory traversal protection.
+**Repository status: upstream-derived, maintained copy — not an original implementation by this repository owner.**
 
-##### I developed this script to streamline the conversion of over 200+ virtual hosts from Apache to Nginx, tailored precisely to meet our infrastructure's requirements. Sensitive data and configurations have been sanitized for this public release. The script significantly reduced the time and effort required for our migration, enabling us to transition numerous vHosts efficiently.
+[فارسی](README_FA.md) · [Origin & attribution](PROVENANCE.md) · [License file](LICENSE)
 
-This tool served as an invaluable resource during our migration process, but please note that it was designed with specific use cases in mind. As such, while it has proven reliable in our environment, I strongly recommend that you thoroughly review and test it within your own setup before deploying it to production.
+> [!IMPORTANT]
+> **Original author:** [Raza Rafaideen (@razamoh)](https://github.com/razamoh), author of the [upstream project](https://github.com/razamoh/apacheToNginx).  
+> **This repository's maintainer:** [@mehrdad-dd](https://github.com/mehrdad-dd) — maintains this copy and its documentation. **Repository ownership is not a transfer of copyright.**
 
-Use at your own risk.
+## What is this?
 
-## Features
+A Bash script originally written to assist with converting Apache virtual-host configuration into Nginx configuration. This repository preserves its upstream authorship and history. No independent authorship of `converter.sh` is claimed here.
 
-- **Automatic Conversion**: Converts Apache virtual host configurations to Nginx.
-- **Rate Limiting**: Option to enable request rate limiting and connection limits.
-- **Untrusted Content Handling**: Configurable restriction on PHP execution in specific directories.
-- **Directory Traversal Protection**: Adds protection against directory traversal attacks.
-- **SSL/TLS Support**: Automatically configures SSL/TLS if valid certificates are detected.
-- **Dry Run Mode**: Preview Nginx configurations before applying changes.
-- **Logging**: Logs all actions and outputs to a secure log file.
+| Item | Status |
+|---|---|
+| Original source | [razamoh/apacheToNginx](https://github.com/razamoh/apacheToNginx) |
+| Original code author | Raza Rafaideen / `@razamoh` |
+| Current repository maintainer | `@mehrdad-dd` |
+| Code provenance | `converter.sh` matched the upstream file at the recorded October 2026 review |
+| Changes in this repository | The October 14, 2026 commit edited README whitespace only; later documentation changes are tracked in Git |
+| License | The included [LICENSE](LICENSE) contains **GNU GPL version 3**; the old README (including upstream) incorrectly said MIT. See below. |
 
-## Prerequisites
+## Safety and current limitations
 
-- **Apache**: Ensure Apache is installed and your configuration files are in the default `/etc/apache2/sites-available` directory.
-- **Nginx**: Ensure Nginx is installed and properly configured.
-- **PHP-FPM**: PHP-FPM must be installed and running for PHP sites.
-- **OpenSSL**: Used for verifying SSL certificates.
+> [!CAUTION]
+> **Do not use this converter on a production server in its current state.** The current script has an unterminated shell quote near `DEFAULT_SSL_KEY_PATH`, its advertised `--dry-run` option is not actually parsed, and its file-handling logic can move/replace Nginx configurations. It has not been validated for safe execution here.
 
-## Installation
-
-1. Clone the repository:
-    ```bash
-    git clone https://github.com/yourusername/apache-to-nginx-conversion.git
-    cd apache-to-nginx-conversion
-    ```
-
-2. Make the script executable:
-    ```bash
-    chmod +x convert_apache_to_nginx.sh
-    ```
-
-3. Run the script with your desired options.
-
-## Usage
-
+You can inspect the file without executing its conversion logic:
 
 ```bash
-./convert_apache_to_nginx.sh [options]
+git clone https://github.com/mehrdad-dd/apacheToNginx.git
+cd apacheToNginx
+bash -n converter.sh
 ```
-## Options
---dry-run: Enables dry run mode to preview configurations without applying changes.
---enable-rate-limiting: Enables rate limiting for requests and connections.
---enable-untrusted-content-handling: Restricts PHP execution in certain directories.
---enable-directory-traversal-protection: Protects against directory traversal attacks.
 
+`bash -n` currently reports a syntax problem; the script requires a separate code audit, reliable non-destructive dry-run implementation, and tests before use.
 
-## Example command
-```bash
-./convert_apache_to_nginx.sh --enable-rate-limiting --enable-directory-traversal-protection
-```
-## Logs
-  The script logs its actions to /var/log/nginx_conversion.log. Check this file for detailed output and any errors encountered during the conversion process.
+## License clarification
 
-## Backup
- The script automatically backs up any existing Nginx configurations before generating new ones. Backup files are saved with a .bak extension.
+The repository and upstream both contain a `LICENSE` file with the **GNU General Public License, version 3 (GPLv3)** text, while the historical README claimed **MIT**. These statements conflict.
 
-## Contributing
-Contributions are welcome! Please fork the repository and submit a pull request.
+**We have removed the unsupported MIT claim from this README and preserved the GPLv3 license text unchanged.** Until the original rights holder clarifies the discrepancy, do **not** describe this script as MIT-licensed, replace its license, or claim its original code as your own. If you plan to redistribute or relicense it, confirm the appropriate permissions and obligations first.
 
-## License
-This project is licensed under the MIT License. See the LICENSE file for details.
+The included GPLv3 text, if applicable, allows modification and redistribution subject to its obligations, including preserving copyright/license notices and marking changes. This README is not legal advice.
 
-## Disclaimer
-This script is provided as-is. Use it at your own risk. Always verify the generated configurations before deploying them to a production environment.
+## Credits and contributions
 
-## Authors
+- **Original implementation and upstream history:** [Raza Rafaideen (@razamoh)](https://github.com/razamoh/apacheToNginx).
+- **Maintenance and later documentation in this copy:** [@mehrdad-dd](https://github.com/mehrdad-dd).
+- **Detailed provenance and outstanding license questions:** [PROVENANCE.md](PROVENANCE.md).
 
-- [@razamoh](https://www.github.com/razamoh)
+Contributions are welcome once submitted with clear attribution, a summary of the changes, and confirmation that the contributor has rights to provide the material. No one should remove historical credit when preparing a derivative.
